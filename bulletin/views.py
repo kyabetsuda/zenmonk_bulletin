@@ -9,7 +9,8 @@ from .models import Post
 # Create your views here.
 @login_required
 def index(request):
-    return HttpResponse("Home")
+    posts = Post.objects.all()
+    return render(request, 'bulletin/index.html', {'posts': posts})
 
 @login_required
 def post_new(request):
