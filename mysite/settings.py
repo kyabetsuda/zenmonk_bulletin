@@ -124,3 +124,74 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # ログイン後トップページにリダイレクト
 LOGIN_REDIRECT_URL = '/'
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse',
+        },
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        },
+    },
+    'formatters': {
+        'django.server': {
+            '()': 'django.utils.log.ServerFormatter',
+            'format': '[%(server_time)s] %(message)s a',
+        },
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s '
+                      '%(process)d %(thread)d %(message)s'
+        },
+    },
+    'handlers': {
+        'file': {  # どこに出すかの設定に名前をつける `file`という名前をつけている
+            'level': 'DEBUG',  # DEBUG以上のログを取り扱うという意味
+            'class': 'logging.FileHandler',  # ログを出力するためのクラスを指定
+            'filename': os.path.join(BASE_DIR + '/log/', 'django.log'),  # どこに出すか
+            # 'formatter': 'all',  # どの出力フォーマットで出すかを名前で指定
+            'formatter': 'verbose',
+        },
+        'console': {
+            'level': 'INFO',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'django.server': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'django.server',
+        },
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'mail_admins'],
+            'level': 'INFO',
+        },
+        'django.server': {
+            'handlers': ['django.server'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        #追加
+        'console': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'file': {
+            'handlers': ['file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    }
+}

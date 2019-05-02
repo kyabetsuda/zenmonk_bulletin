@@ -5,6 +5,7 @@ from .forms import PostForm, CommentForm
 import datetime #<- 追記
 from django.utils import timezone #<- 追記
 from .models import Post, Comment
+from .services.LoggerService import LoggerService as ls
 
 # Create your views here.
 @login_required
@@ -21,7 +22,7 @@ def post_new(request):
             post.author = request.user
             post.published_date = timezone.now()
             post.save()
-            return redirect('/post/' + str(pk), pk=post.pk)
+            return redirect('/post/' + str(post.pk), pk=post.pk)
     else:
         form = PostForm()
     return render(request, 'bulletin/post_edit.html', {'form': form})
@@ -78,3 +79,7 @@ def comment_edit(request, pk, commentid):
     else:
         form = CommentForm(instance=comment)
     return render(request, 'bulletin/comment_edit.html', {'form': form})
+
+# def info(msg):
+#     logger = logging.getLogger('console')
+#     logger
