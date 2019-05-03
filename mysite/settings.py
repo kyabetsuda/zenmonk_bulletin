@@ -25,7 +25,7 @@ SECRET_KEY = '805ibo%m9t3_0_(u@j2x+r!_t5xie@z1bmz+6u=j)0b-6*n&=('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['133.167.42.228','127.0.0.1']
+ALLOWED_HOSTS = ['133.167.42.228','127.0.0.1','192.168.3.3']
 
 
 # Application definition
@@ -120,7 +120,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATICFILES_DIRS = (
+  os.path.join(BASE_DIR, 'static/'),
+)
 
 # ログイン後トップページにリダイレクト
 LOGIN_REDIRECT_URL = '/'

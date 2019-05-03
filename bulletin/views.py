@@ -8,7 +8,6 @@ from .models import Post, Comment
 from .services.LoggerService import LoggerService as ls
 
 # Create your views here.
-@login_required
 def index(request):
     posts = Post.objects.all()
     return render(request, 'bulletin/index.html', {'posts': posts})
@@ -42,7 +41,6 @@ def post_edit(request, pk):
         form = PostForm(instance=post)
     return render(request, 'bulletin/post_edit.html', {'form': form})
 
-@login_required
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'bulletin/post_detail.html', {'post': post})
@@ -79,7 +77,3 @@ def comment_edit(request, pk, commentid):
     else:
         form = CommentForm(instance=comment)
     return render(request, 'bulletin/comment_edit.html', {'form': form})
-
-# def info(msg):
-#     logger = logging.getLogger('console')
-#     logger

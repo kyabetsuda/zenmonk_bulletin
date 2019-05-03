@@ -1,8 +1,31 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-    <h1>Heloo Bulltin</h1>
+    {% block extrahead %}
+      <link href="{% static 'css/index.css' %}" rel="stylesheet">
+    {% endblock %}
+    <h1>記事一覧</h1>
     {% for post in posts %}
-      {{ post.title }}<br>
+    <a href="/post/{{ post.pk }}">
+      <div class="cardWrapper">
+      <div class="card m-2">
+          <div class="card-title">
+            <div class="row m-2">
+              <h5 class="col-6">{{ post.title }}</h5>
+              <h6 class="col-3">閲覧数</h6>
+              <h6 class="col-3">返信数</h6>
+            </div>
+          </div>
+          <div class="row m-2">
+            <div class="col-6">{{ post.text }}</div>
+            <h3 class="col-3">1</h3>
+            <h3 class="col-3">2</h3>
+          </div>
+          <div class="card-footer">
+            <span>{{ post.published_date }}</span>
+          </div>
+        </div>
+      </div>
+    </a>
     {% endfor %}
 {% endblock %}
