@@ -1,3 +1,14 @@
 a {
   color : #000000;
 }
+
+.textOverFlow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.text {
+  color : #666666;
+}

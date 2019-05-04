@@ -1,14 +1,40 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
-    <div class="post">
-        {% if post.published_date %}
-            <div class="date">
-                {{ post.published_date }}
+  {% block extrahead %}
+    <link href="{% static 'css/post_detail.css' %}" rel="stylesheet">
+  {% endblock %}
+  <div class="post">
+      <a class="btn btn-default" href="{% url 'bulletin:post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+      <div class="cardWrapper">
+      <div class="card m-2">
+          <div class="card-title">
+            <div class="row m-2">
+              <h3 class="col-12">
+                {{ post.title }}
+              </h3>
             </div>
-        {% endif %}
-        <a class="btn btn-default" href="{% url 'bulletin:post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.text|linebreaksbr }}</p>
-    </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4 profileImgContainer">
+                <img class="profile" src="{% static 'img/profile.png' %}">
+              </div>
+              <div class="col-8 text">
+                {{ post.text | urlize | linebreaksbr }}
+              </div>
+            </div>
+          </div>
+          <!-- <div class="row m-2" style="">
+            <img class="profile" src="{% static 'img/profile.png' %}" align="top">
+            <p style="word-wrap: normal">
+            {{ post.text | urlize | linebreaksbr }}
+            </p>
+          </div> -->
+          <div class="card-footer">
+            <span>{{ post.published_date }}</span>
+          </div>
+        </div>
+      </div>
+  </div>
 {% endblock %}
