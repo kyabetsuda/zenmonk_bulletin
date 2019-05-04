@@ -8,11 +8,11 @@
       <a class="btn btn-default" href="{% url 'bulletin:post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
       <div class="cardWrapper">
       <div class="card m-2">
-          <div class="card-title">
-            <div class="row m-2">
-              <h3 class="col-12">
-                {{ post.title }}
-              </h3>
+          <div class="card-title bg-dark">
+            <div class="row m-2 titleContainer">
+                <div style="color:white">
+                  {{ post.title }}
+                </div>
             </div>
           </div>
           <div class="card-body">
@@ -25,12 +25,6 @@
               </div>
             </div>
           </div>
-          <!-- <div class="row m-2" style="">
-            <img class="profile" src="{% static 'img/profile.png' %}" align="top">
-            <p style="word-wrap: normal">
-            {{ post.text | urlize | linebreaksbr }}
-            </p>
-          </div> -->
           <div class="card-footer">
             <span>{{ post.published_date }}</span>
           </div>

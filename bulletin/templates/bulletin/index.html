@@ -8,21 +8,23 @@
     {% for post in posts %}
       <div class="cardWrapper">
       <div class="card m-2">
-          <div class="card-title">
+          <div class="card-title bg-dark">
             <div class="row m-2">
-              <h4 class="col-6">
+              <div class="col-6 titleContainer">
                 <a href="/post/{{ post.pk }}">
                   {{ post.title }}
                 </a>
-              </h4>
-              <h6 class="col-3">閲覧数</h6>
-              <h6 class="col-3">返信数</h6>
+              </div>
+              <div class="col-3 titleContainer"><span>閲覧数</span></div>
+              <div class="col-3 titleContainer"><span>返信数</span></div>
             </div>
           </div>
-          <div class="row m-2">
-            <div class="col-6 textOverFlow text">{{ post.text }}</div>
-            <h3 class="col-3">1</h3>
-            <h3 class="col-3">2</h3>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6 textOverFlow text">{{ post.text }}</div>
+              <div class="col-3">1</div>
+              <div class="col-3">2</div>
+            </div>
           </div>
           <div class="card-footer">
             <span>{{ post.published_date }}</span>

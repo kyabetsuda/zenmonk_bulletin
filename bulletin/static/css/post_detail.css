@@ -24,6 +24,11 @@
   }
 }
 
+.titleContainer {
+  display: flex;
+  align-items: center; /*上下中央揃え*/
+}
+
 .profileImgContainer{
   display: flex;
   justify-content: center; /*左右中央揃え*/
@@ -34,31 +39,6 @@
   padding:1;
 }
 
-.balloon1-left {
-  position: relative;
-  display: inline-block;
-  padding: 7px 10px;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  color: #555;
-  font-size: 16px;
-  background: #e0edff;
-}
-
-.balloon1-left:before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -30px;
-  margin-top: -15px;
-  border: 15px solid transparent;
-  border-right: 15px solid #e0edff;
-}
-
-.balloon1-left p {
-  margin: 0;
-  padding: 0;
+.card-title{
+  border-radius: 3px 3px 0px 0px;
 }
