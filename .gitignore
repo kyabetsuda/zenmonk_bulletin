@@ -1,1 +1,3 @@
 myvenv_test/
+log/
+db.sqlite3

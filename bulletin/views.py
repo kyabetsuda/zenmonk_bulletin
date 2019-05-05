@@ -43,7 +43,9 @@ def post_edit(request, pk):
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'bulletin/post_detail.html', {'post': post})
+    comments = Comment.objects.filter(postid=post)
+    ls.file(comments)
+    return render(request, 'bulletin/post_detail.html', {'post': post,'comments' : comments})
 
 @login_required
 def comment_new(request, pk):

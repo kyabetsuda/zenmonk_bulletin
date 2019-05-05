@@ -5,7 +5,7 @@
     <link href="{% static 'css/post_detail.css' %}" rel="stylesheet">
   {% endblock %}
   <div class="post">
-      <a class="btn btn-default" href="{% url 'bulletin:post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+      <!-- <a class="btn btn-default" href="{% url 'bulletin:post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a> -->
       <div class="cardWrapper">
       <div class="card m-2">
           <div class="card-title bg-dark">
@@ -31,4 +31,33 @@
         </div>
       </div>
   </div>
+  {% for comment in comments %}
+  <div class="post">
+      <!-- <a class="btn btn-default" href="{% url 'bulletin:post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a> -->
+      <div class="cardWrapper">
+      <div class="card m-2">
+          <!-- <div class="card-title bg-dark">
+            <div class="row m-2 titleContainer">
+                <div style="color:white">
+                  {{ post.title }}
+                </div>
+            </div>
+          </div> -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-4 profileImgContainer">
+                <img class="profile" src="{% static 'img/profile.png' %}">
+              </div>
+              <div class="col-8 text">
+                {{ comment.text | urlize | linebreaksbr }}
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <span>{{ comment.published_date }}</span>
+          </div>
+        </div>
+      </div>
+  </div>
+  {% endfor %}
 {% endblock %}
