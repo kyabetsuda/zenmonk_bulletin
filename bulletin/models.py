@@ -31,3 +31,15 @@ class Comment(models.Model):
     def publish(self):
         self.published_date = timezone.now()
         self.save()
+
+class Access(models.Model):
+    postid = models.ForeignKey('bulletin.Post', on_delete=models.CASCADE)
+    count = models.IntegerField(default=0)
+    created_date = models.DateTimeField(
+            default=timezone.now)
+    published_date = models.DateTimeField(
+            blank=True, null=True)
+
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()

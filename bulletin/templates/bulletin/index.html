@@ -22,8 +22,8 @@
           <div class="card-body">
             <div class="row">
               <div class="col-6 textOverFlow text">{{ post.text }}</div>
-              <div class="col-3">1</div>
-              <div class="col-3">2</div>
+              <div class="col-3">{{ post.access_set.all.0.count }}</div>
+              <div class="col-3">{{ post.comment_set.all|length }}</div>
             </div>
           </div>
           <div class="card-footer">

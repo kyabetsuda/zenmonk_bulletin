@@ -6,10 +6,13 @@ import datetime #<- 追記
 from django.utils import timezone #<- 追記
 from .models import Post, Comment
 from .services.LoggerService import LoggerService as ls
+from .services.AccessService import AccessService
 
 # Create your views here.
 def index(request):
     posts = Post.objects.all()
+    ls.file(len(posts[0].comment_set.all()))
+    ls.file(posts[0].access_set.all()[0].count)
     return render(request, 'bulletin/index.html', {'posts': posts})
 
 @login_required
@@ -20,7 +23,9 @@ def post_new(request):
             post = form.save(commit=False)
             post.author = request.user
             post.published_date = timezone.now()
-            post.save()
+            post.publish()
+            accessService = AccessService()
+            accessService.countup(post)
             return redirect('/post/' + str(post.pk), pk=post.pk)
     else:
         form = PostForm()
@@ -35,16 +40,18 @@ def post_edit(request, pk):
             post = form.save(commit=False)
             post.author = request.user
             post.published_date = timezone.now()
-            post.save()
+            post.publish()
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm(instance=post)
     return render(request, 'bulletin/post_edit.html', {'form': form})
 
 def post_detail(request, pk):
+    # 記事の検索をしつつ、無い場合は404エラーを返す
     post = get_object_or_404(Post, pk=pk)
     comments = Comment.objects.filter(postid=post)
-    ls.file(comments)
+    accessService = AccessService()
+    accessService.countup(post)
     return render(request, 'bulletin/post_detail.html', {'post': post,'comments' : comments})
 
 @login_required
@@ -57,7 +64,7 @@ def comment_new(request, pk):
             comment.author = request.user
             comment.postid = post
             comment.published_date = timezone.now()
-            comment.save()
+            comment.publish()
             return redirect('/', pk=pk)
     else:
         form = CommentForm()
@@ -74,7 +81,7 @@ def comment_edit(request, pk, commentid):
             comment.author = request.user
             comment.postid = post
             comment.published_date = timezone.now()
-            comment.save()
+            comment.publish()
             return redirect('/post/' + str(pk), pk=pk)
     else:
         form = CommentForm(instance=comment)
