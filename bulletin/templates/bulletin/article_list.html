@@ -14,6 +14,9 @@
                 <a href="/post/{{ post.pk }}">
                   {{ post.title }}
                 </a>
+                {% if post.draft_flg == "1" %}
+                  &nbsp;&nbsp;<div class="btn btn-primary">下書き</div>
+                {% endif %}
               </div>
               <div class="col-3 titleContainer"><span>閲覧数</span></div>
               <div class="col-3 titleContainer"><span>返信数</span></div>
@@ -29,6 +32,8 @@
           <div class="card-footer">
             <span>{{ post.published_date }}</span>
             <span>&nbsp;&nbsp;by&nbsp;{{ post.author }}</span>
+            <span>&nbsp;&nbsp;<a class="btn border btn-default" href="{% url 'bulletin:post_edit' pk=post.pk %}">編集する</a></span>
+            <span>&nbsp;&nbsp;<a class="btn border btn-default" href="{% url 'bulletin:post_delete' pk=post.pk %}">削除する</a></span>
           </div>
         </div>
       </div>

@@ -34,16 +34,8 @@
   </div>
   {% for comment in comments %}
   <div class="post">
-      <!-- <a class="btn btn-default" href="{% url 'bulletin:post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a> -->
       <div class="cardWrapper">
       <div class="card m-2">
-          <!-- <div class="card-title bg-dark">
-            <div class="row m-2 titleContainer">
-                <div style="color:white">
-                  {{ post.title }}
-                </div>
-            </div>
-          </div> -->
           <div class="card-body">
             <div class="row">
               <div class="col-4 profileImgContainer">
@@ -57,6 +49,9 @@
           </div>
           <div class="card-footer">
             <span>{{ comment.published_date }}</span>
+            {% if comment.author == user %}
+              <span>&nbsp;&nbsp;<a class="btn border btn-default" href="{% url 'bulletin:comment_edit' pk=post.pk commentid=comment.id %}">編集する</a></span>
+            {% endif %}
           </div>
         </div>
       </div>
