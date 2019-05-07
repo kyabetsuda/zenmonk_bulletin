@@ -1,9 +1,20 @@
 {% extends 'base.html' %}
-
+{% load widget_tweaks %}
 {% block content %}
     <h1>New post</h1>
     <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+      <div class="form-group">
+        <label>タイトル:</label>
+        {{ form.title|add_class:"form-control" }}
+      </div>
+      <div class="form-group">
+        <label>内容:</label>
+        {{ form.text|add_class:"form-control" }}
+      </div>
+      <div class="form-group">
+        <label>公開か下書きか:</label>
+        {{ form.draft_flg }}
+      </div>
+      <button type="submit" class="save border btn btn-default">Save</button>
     </form>
 {% endblock %}

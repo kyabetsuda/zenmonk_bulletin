@@ -5,7 +5,7 @@
     <link href="{% static 'css/post_detail.css' %}" rel="stylesheet">
   {% endblock %}
   <div class="post">
-      <!-- <a class="btn btn-default" href="{% url 'bulletin:post_edit' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a> -->
+      <a class="btn border btn-default" href="{% url 'bulletin:comment_new' pk=post.pk %}"><span class="">コメントをする</span></a>
       <div class="cardWrapper">
       <div class="card m-2">
           <div class="card-title bg-dark">
@@ -19,6 +19,7 @@
             <div class="row">
               <div class="col-4 profileImgContainer">
                 <img class="profile" src="{% static 'img/profile.png' %}">
+                <div>{{ post.author }}</div>
               </div>
               <div class="col-8 text">
                 {{ post.text | urlize | linebreaksbr }}
@@ -47,6 +48,7 @@
             <div class="row">
               <div class="col-4 profileImgContainer">
                 <img class="profile" src="{% static 'img/profile.png' %}">
+                <div>{{ comment.author }}</div>
               </div>
               <div class="col-8 text">
                 {{ comment.text | urlize | linebreaksbr }}

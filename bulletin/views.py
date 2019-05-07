@@ -10,9 +10,7 @@ from .services.AccessService import AccessService
 
 # Create your views here.
 def index(request):
-    posts = Post.objects.all()
-    ls.file(len(posts[0].comment_set.all()))
-    ls.file(posts[0].access_set.all()[0].count)
+    posts = Post.objects.order_by('-published_date').all()
     return render(request, 'bulletin/index.html', {'posts': posts})
 
 @login_required
@@ -65,7 +63,7 @@ def comment_new(request, pk):
             comment.postid = post
             comment.published_date = timezone.now()
             comment.publish()
-            return redirect('/', pk=pk)
+            return redirect('/post/' + str(pk), pk=pk)
     else:
         form = CommentForm()
     return render(request, 'bulletin/comment_edit.html', {'form': form})

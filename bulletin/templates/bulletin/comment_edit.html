@@ -1,9 +1,12 @@
 {% extends 'base.html' %}
-
+{% load widget_tweaks %}
 {% block content %}
     <h1>New Comment</h1>
     <form method="POST" class="post-form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">Save</button>
+      <div class="form-group">
+        <label>コメント:</label>
+        {{ form.text|add_class:"form-control" }}
+      </div>
+        <button type="submit" class="save border btn btn-default">投稿する</button>
     </form>
 {% endblock %}

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['133.167.42.228','127.0.0.1','192.168.3.3']
 # Application definition
 
 INSTALLED_APPS = [
+    'widget_tweaks',
     'bulletin.apps.BulletinConfig',
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
@@ -122,7 +123,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATICFILES_DIRS = (
-  os.path.join(BASE_DIR, 'static/'),
+  os.path.join(BASE_DIR, 'static/'), os.path.join(BASE_DIR, 'accounts/static/')
 )
 
 # ログイン後トップページにリダイレクト
