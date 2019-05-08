@@ -120,10 +120,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
+# ローカル用
+# STATIC_URL = '/static/'
+# # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+# STATICFILES_DIRS = (
+#   os.path.join(BASE_DIR, 'static/'),os.path.join(BASE_DIR, 'accounts/static/')
+# )
+
+# 本番用
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = '/usr/share/nginx/html/zenmonk/static/'
 STATICFILES_DIRS = (
-  os.path.join(BASE_DIR, 'static/'),os.path.join(BASE_DIR, 'accounts/static/')
+  os.path.join(BASE_DIR, 'bulletin/static/'),os.path.join(BASE_DIR, 'accounts/static/')
 )
 
 # ログイン後トップページにリダイレクト
