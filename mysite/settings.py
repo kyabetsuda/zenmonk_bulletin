@@ -129,9 +129,9 @@ USE_TZ = True
 
 # 本番用
 STATIC_URL = '/static/'
-STATIC_ROOT = '/usr/share/nginx/html/zenmonk/static/'
+STATIC_ROOT = '/home/zenmonk/static/'
 STATICFILES_DIRS = (
-  os.path.join(BASE_DIR, 'static/'),os.path.join(BASE_DIR, 'bulletin/static/'),os.path.join(BASE_DIR, 'accounts/static/')
+  os.path.join(BASE_DIR, 'bulletin/static/'),os.path.join(BASE_DIR, 'accounts/static/')
 )
 
 # ログイン後トップページにリダイレクト
