@@ -1,0 +1,27 @@
+a {
+  color : white;
+}
+
+.textOverFlow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.text {
+  color : #666666;
+}
+
+.card-title{
+  border-radius: 3px 3px 0px 0px;
+}
+
+.card-title > *{
+  color:white;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center; /*上下中央揃え*/
+}

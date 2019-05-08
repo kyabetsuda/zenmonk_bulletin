@@ -1,0 +1,7 @@
+.helptext > *{
+  color:blue;
+}
+
+.error > * {
+  color:red;
+}
