@@ -25,16 +25,31 @@ SECRET_KEY = '805ibo%m9t3_0_(u@j2x+r!_t5xie@z1bmz+6u=j)0b-6*n&=('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['133.167.42.228','127.0.0.1','192.168.3.3']
+# 開発用
+# ALLOWED_HOSTS = ['127.0.0.1','192.168.3.3']
+
+# 本番用
+ALLOWED_HOSTS = ['bulletin.work']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    # 3rd party apps
+    # 'rest_framework',
+    # 'rest_framework.authtoken',
+    # 'rest_auth',
+    # 'allauth',
+    # 'allauth.account',
+    # 'rest_auth.registration',
+
+    # 本番用 サーバでデプロイ時は外す
+    # 'django.contrib.admin',
+
+    'django.contrib.sites',
     'widget_tweaks',
     'bulletin.apps.BulletinConfig',
     'accounts.apps.AccountsConfig',
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -120,14 +135,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-# ローカル用
+# # ローカル用
 # STATIC_URL = '/static/'
 # # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 # STATICFILES_DIRS = (
 #   os.path.join(BASE_DIR, 'static/'),os.path.join(BASE_DIR, 'accounts/static/')
 # )
 
-# 本番用
+本番用
 STATIC_URL = '/static/'
 STATIC_ROOT ='/usr/share/nginx/html/static/'
 STATICFILES_DIRS = (
@@ -207,3 +222,13 @@ LOGGING = {
         },
     }
 }
+
+# ユーザ認証用に追加
+AUTH_USER_MODEL = 'accounts.User'
+AUTHENTICATION_BACKENDS = (
+# Needed to login by username in Django admin, regardless of allauth
+'django.contrib.auth.backends.ModelBackend',
+# allauth specific authentication methods, such as login by e-mail
+'allauth.account.auth_backends.AuthenticationBackend',
+)
+SITE_ID=2

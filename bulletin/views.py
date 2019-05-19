@@ -7,7 +7,7 @@ from django.utils import timezone #<- 追記
 from .models import Post, Comment
 from .services.LoggerService import LoggerService as ls
 from .services.AccessService import AccessService
-from django.contrib.auth.models import User
+from accounts.models import User
 from django.http import Http404
 
 # Create your views here.
