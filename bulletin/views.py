@@ -7,13 +7,16 @@ from django.utils import timezone #<- 追記
 from .models import Post, Comment
 from .services.LoggerService import LoggerService as ls
 from .services.AccessService import AccessService
+from .services.PaginateService import PaginateService as ps
 from accounts.models import User
 from django.http import Http404
+from django.conf import settings
 
 # Create your views here.
 def index(request):
     posts = Post.objects.order_by('-published_date').all().exclude(draft_flg='1')
-    return render(request, 'bulletin/index.html', {'posts': posts})
+    page_obj = ps.paginate_query(request, posts, settings.PAGE_PER_ITEM)
+    return render(request, 'bulletin/index.html', {'page_obj': page_obj})
 
 @login_required
 def post_new(request):

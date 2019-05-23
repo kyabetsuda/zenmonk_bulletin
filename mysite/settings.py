@@ -23,13 +23,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '805ibo%m9t3_0_(u@j2x+r!_t5xie@z1bmz+6u=j)0b-6*n&=('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # 開発用
-# ALLOWED_HOSTS = ['127.0.0.1','192.168.3.3']
+ALLOWED_HOSTS = ['127.0.0.1','192.168.3.3']
 
 # 本番用
-ALLOWED_HOSTS = ['bulletin.work']
+# ALLOWED_HOSTS = ['bulletin.work']
 
 
 # Application definition
@@ -39,12 +39,12 @@ INSTALLED_APPS = [
     # 'rest_framework',
     # 'rest_framework.authtoken',
     # 'rest_auth',
-    # 'allauth',
-    # 'allauth.account',
     # 'rest_auth.registration',
+    'allauth',
+    'allauth.account',
 
     # 本番用 サーバでデプロイ時は外す
-    # 'django.contrib.admin',
+    'django.contrib.admin',
 
     'django.contrib.sites',
     'widget_tweaks',
@@ -135,19 +135,21 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
-# # ローカル用
-# STATIC_URL = '/static/'
-# # STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-# STATICFILES_DIRS = (
-#   os.path.join(BASE_DIR, 'static/'),os.path.join(BASE_DIR, 'accounts/static/')
-# )
-
-本番用
+# ローカル用
 STATIC_URL = '/static/'
-STATIC_ROOT ='/usr/share/nginx/html/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 STATICFILES_DIRS = (
-  os.path.join(BASE_DIR, 'static/'),os.path.join(BASE_DIR, 'bulletin/static/'),os.path.join(BASE_DIR, 'accounts/static/')
+    os.path.join(BASE_DIR, 'static/'),
+    # os.path.join(BASE_DIR, 'bulletin/static/'),
+    os.path.join(BASE_DIR, 'accounts/static/'),
 )
+
+#本番用
+# STATIC_URL = '/static/'
+# STATIC_ROOT ='/usr/share/nginx/html/static/'
+# STATICFILES_DIRS = (
+#   os.path.join(BASE_DIR, 'static/'),os.path.join(BASE_DIR, 'bulletin/static/'),os.path.join(BASE_DIR, 'accounts/static/')
+# )
 
 # ログイン後トップページにリダイレクト
 LOGIN_REDIRECT_URL = '/'
@@ -232,3 +234,6 @@ AUTHENTICATION_BACKENDS = (
 'allauth.account.auth_backends.AuthenticationBackend',
 )
 SITE_ID=2
+
+# ページネーション用
+PAGE_PER_ITEM = 1
