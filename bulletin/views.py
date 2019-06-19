@@ -69,6 +69,7 @@ def comment_new(request, pk):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.author = request.user
+            ls.file("userid is " + str(comment.author.id))
             comment.postid = post
             comment.published_date = timezone.now()
             comment.publish()

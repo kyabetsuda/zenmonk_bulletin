@@ -6,6 +6,7 @@ from django.utils.translation import gettext_lazy as _
 from django.core.mail import send_mail
 from django.contrib.auth.base_user import BaseUserManager
 from django.core.validators import MinLengthValidator
+from django.core.validators import FileExtensionValidator
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -50,7 +51,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(
         _('username'),
         max_length=150,
-        unique=True,
+        unique=False,
         help_text=_('Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.'),
         validators=[username_validator],
         error_messages={
@@ -68,17 +69,14 @@ class User(AbstractBaseUser, PermissionsMixin):
         },
     )
 
-    # cpassword = models.CharField(
-    #     _('cpassword'),
-    #     max_length=150,
-    #     null=True,
-    #     unique=False,
-    #     help_text=_('aaa'),
-    #     validators=[MinLengthValidator(8)],
-    #     error_messages={
-    #         'unique': _("パスワードが規則に従っていません"),
-    #     },
-    # )
+    profile_img = models.FileField(
+        blank=True,
+        null=True,
+        default=None,
+        upload_to='uploads/%Y/%m/%d/',
+        verbose_name='添付ファイル',
+        validators=[FileExtensionValidator(['jpg', ])],
+    )
 
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=150, blank=True)

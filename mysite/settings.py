@@ -144,6 +144,10 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'accounts/static/'),
 )
 
+# 画像アップロードテスト
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 #本番用
 # STATIC_URL = '/static/'
 # STATIC_ROOT ='/usr/share/nginx/html/static/'
@@ -236,4 +240,4 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID=2
 
 # ページネーション用
-PAGE_PER_ITEM = 1
+PAGE_PER_ITEM = 5

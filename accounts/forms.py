@@ -1,6 +1,7 @@
 from django import forms
 from .models import User
 from bulletin.services.LoggerService import LoggerService as ls
+from django.shortcuts import render, redirect, get_list_or_404, get_object_or_404
 
 class UserForm(forms.ModelForm):
 
@@ -20,6 +21,8 @@ class UserForm(forms.ModelForm):
         widget=forms.PasswordInput(), min_length=8
     )
 
+    # profile_img = forms.ImageField()
+
     def clean_password(self):
         password = self.cleaned_data.get('password', None)
         cpassword = self.cleaned_data.get('cpassword', None)
@@ -34,5 +37,6 @@ class UserForm(forms.ModelForm):
         'username',
         'cpassword',
         'password',
-        'email'
+        'email',
+        'profile_img'
         )

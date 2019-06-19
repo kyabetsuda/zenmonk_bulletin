@@ -5,7 +5,7 @@ from accounts.models import User
 
 class Post(models.Model):
     # author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    author = models.ForeignKey('accounts.User', on_delete=models.CASCADE)
+    author = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=False)
     title = models.CharField(max_length=200)
     text = models.TextField()
     draft_flg = models.CharField(max_length=1, default='0')
@@ -23,7 +23,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     # author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
-    author = models.ForeignKey('accounts.User', on_delete=models.CASCADE)
+    author = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=False)
     postid = models.ForeignKey('bulletin.Post', on_delete=models.CASCADE)
     text = models.TextField()
     created_date = models.DateTimeField(
